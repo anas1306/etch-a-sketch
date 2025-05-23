@@ -1,0 +1,28 @@
+body {
+    background-color: #121212;
+    color: #F9FAF8;
+    font-family: 'Book Antiqua';
+    max-width: 75%;
+    margin:auto;
+    display:flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 50px
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    padding: 25px 0px 25px 0px;
+    justify-content: space-around;
+}
+
+#setGrid, #resetGrid {
+    height: 50px;
+    width: 15%;
+    border-radius: 10px;
+    background-color: #332940;
+    color: #F9FAF8;
+    border: 0px;
+    cursor: pointer;
+}
