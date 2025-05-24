@@ -26,3 +26,13 @@ body {
     border: 0px;
     cursor: pointer;
 }
+
+.grid {
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 960px;
+    width:960px;
+}
