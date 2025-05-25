@@ -1,4 +1,4 @@
-function changeSides(sideLength = 16) {
+function changeSides(sideLength = 0) {
 
     j = grid.children.length;
     while (j > 0) {
@@ -13,25 +13,39 @@ function changeSides(sideLength = 16) {
         box = document.createElement('div');
         box.classList.add("interactable");
         box.style.border = 'solid 1px black';
-        box.style.backgroundColor = "white";
+        box.style.backgroundColor = "#C0C0C0";
         box.style.height = `${heightWidth}px`;
         box.style.width = `${heightWidth}px`;
+        box.style.cursor = "pointer";
         grid.appendChild(box);
         boxNumber--;
     }
-
 }
 
-const sideValue = document.querySelector("#setSide")
-const grid = document.querySelector(".grid")
-const slider = document.querySelector(".slider")
+function getNewColor() {
+  let symbols = '0123456789ABCDEF';
+  let color = '#'
+  for (let i = 0; i < 6; i++) {
+     color += symbols[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
-slider.addEventListener("change", () => {
-    changeSides(slider.value)
-    sideValue.textContent = `Set grid sides: ${slider.value}px`
+const sideValue = document.querySelector("#setSide");
+const grid = document.querySelector(".grid");
+const slider = document.querySelector(".slider");
+let colorChangable = document.querySelectorAll(".interactable")
 
+slider.addEventListener("input", () => {
+    changeSides(slider.value);
+    sideValue.textContent = `Set grid sides: ${slider.value}px`;
+    colorChangable = document.querySelectorAll(".interactable")
+    colorChangable.forEach(button => {
+        button.addEventListener("mousedown", () => {
+            button.style.backgroundColor = "#332940";
+        })
+    })
 })
 
-changeSides()
 // okay so basically, first I'm gonna get the grid div. And then I'm gonna take the user's inputted value for the grid's size and then hand that to the create grid function. In the create grid function, I'm gonna make it so that the grid is exactly that many divs, as well as making them wrap so that they can only fit a certain amount of them.
 

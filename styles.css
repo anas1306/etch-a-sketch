@@ -60,6 +60,7 @@ body {
 
 .grid {
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
