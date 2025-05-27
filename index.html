@@ -10,14 +10,22 @@
     </head>
 
     <body>
-
-        <div class="options">
-            <p id="setSide">Set grid sides: 0px</p>
-            <input type="range" min="0" max="96" step = "16" value="0" class="slider">
-            <button id="resetGrid">Reset</button>
+        <div class="heading">
+            <p id="heading">Etch-a-Sketch</p>
         </div>
+        <div class="everything">
+            <div class="options">
+                <p id="setSide">Set grid sides: 0px</p>
+                <input type="range" min="0" max="96" step = "16" value="0" class="slider">
+                <button id="resetGrid">Reset</button>
+                <div class="colorPicker">
+                    <input id="color" type="color" value="#332940" colorpick-eyedropper-active="true">
+                </div>
+                <button id="changeColor">RGB mode?</button>
+            </div>
 
-        <div class="grid"></div>
+            <div class="grid"></div>
+        </div>
 
         <script src="script.js"></script>
 

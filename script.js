@@ -12,7 +12,7 @@ function changeSides(sideLength = 0) {
     while (boxNumber > 0) {
         box = document.createElement('div');
         box.classList.add("interactable");
-        box.style.border = 'solid 1px black';
+        box.style.border = 'solid 1px #898989';
         box.style.backgroundColor = "#C0C0C0";
         box.style.height = `${heightWidth}px`;
         box.style.width = `${heightWidth}px`;
@@ -22,30 +22,65 @@ function changeSides(sideLength = 0) {
     }
 }
 
+function makesGridWork() {
+    changeSides(slider.value);
+    sideValue.textContent = `Set grid sides: ${slider.value}px`;
+    colorChangable = document.querySelectorAll(".interactable")
+    colorChangable.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            document.body.onmousedown = function(){
+                mouseDown = true;
+            } 
+            document.body.onmouseup = function(){
+                mouseDown = false;
+            }
+            if (rgbMode.style.backgroundColor == "rgb(18, 18, 18)" && mouseDown === true) {
+                button.style.backgroundColor = getNewColor();
+            } else if (mouseDown === true) {
+                button.style.backgroundColor = customColor.value
+            }
+        })
+    })
+    colorChangable.forEach(button => {
+        button.addEventListener("mousedown", () => {
+            if (rgbMode.style.backgroundColor == "rgb(18, 18, 18)") {
+                button.style.backgroundColor = getNewColor();
+            } else {
+                button.style.backgroundColor = customColor.value
+            }
+        })
+    })
+}
+
 function getNewColor() {
-  let symbols = '0123456789ABCDEF';
-  let color = '#'
-  for (let i = 0; i < 6; i++) {
-     color += symbols[Math.floor(Math.random() * 16)];
-  }
-  return color;
+    let symbols = '0123456789ABCDEF';
+    let color = '#'
+    for (let i = 0; i < 6; i++) {
+       color += symbols[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 const sideValue = document.querySelector("#setSide");
 const grid = document.querySelector(".grid");
 const slider = document.querySelector(".slider");
 let colorChangable = document.querySelectorAll(".interactable")
+const reset = document.querySelector("#resetGrid")
+const rgbMode = document.querySelector("#changeColor")
+const customColor = document.querySelector("#color")
+let isDrawable = false;
 
-slider.addEventListener("input", () => {
-    changeSides(slider.value);
-    sideValue.textContent = `Set grid sides: ${slider.value}px`;
-    colorChangable = document.querySelectorAll(".interactable")
-    colorChangable.forEach(button => {
-        button.addEventListener("mousedown", () => {
-            button.style.backgroundColor = "#332940";
-        })
-    })
+slider.addEventListener("input", makesGridWork)
+
+reset.addEventListener("click", makesGridWork)
+
+rgbMode.addEventListener("click", () => {
+    if (rgbMode.style.backgroundColor == "rgb(18, 18, 18)") {
+        rgbMode.style.backgroundColor = "#332940"
+        rgbMode.textContent = "RGB mode?"
+    } else {
+        rgbMode.style.backgroundColor = "#121212"
+        rgbMode.textContent = "RGB mode."
+    }
 })
-
-// okay so basically, first I'm gonna get the grid div. And then I'm gonna take the user's inputted value for the grid's size and then hand that to the create grid function. In the create grid function, I'm gonna make it so that the grid is exactly that many divs, as well as making them wrap so that they can only fit a certain amount of them.
 

@@ -5,10 +5,32 @@ body {
     max-width: 75%;
     margin:auto;
     display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px
+}
+
+.everything {
+    display:flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 50px;
-    gap: 50px
+    gap: 50px;
+}
+
+#heading {
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    width: 25%;
+    justify-content: center;
+    color: #F9FAF8;
+    padding: 20px;
+    margin: 0px auto;
+    border: solid 5px;
+    border-radius: 10px;
+    border-color: #332940;
+    background-color: #121212;
 }
 
 .options {
@@ -48,13 +70,37 @@ body {
   cursor: pointer;
 }
 
-#resetGrid {
+#resetGrid, #changeColor {
     height: 50px;
     width: 50%;
     border-radius: 10px;
     background-color: #332940;
     color: #F9FAF8;
-    border: 0px;
+    border: solid 3px;
+    border-color: #332940;
+    cursor: pointer;
+}
+
+.colorPicker {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#colorLabel {
+    font-family: 'Book Antiqua';
+    color: #F9FAF8;
+}
+
+#color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 50px;
+    width: 100px;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
 }
 
@@ -66,4 +112,5 @@ body {
     align-items: center;
     height: 512px;
     width:512px;
+    user-select: none;
 }
